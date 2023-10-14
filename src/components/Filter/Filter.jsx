@@ -3,7 +3,7 @@ import css from './Filter.module.css';
 import { useDispatch } from 'react-redux';
 import { filterContacts } from 'redux/filterSlice';
 
-const Filter = ({ onChange }) => {
+const Filter = () => {
   const dispatch = useDispatch();
   return (
     <div className={css.container}>

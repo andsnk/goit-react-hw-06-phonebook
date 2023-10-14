@@ -3,6 +3,13 @@ import css from './ContactList.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts, selectFilteredContacts } from 'redux/selectors';
 import { deleteContact } from 'redux/contactsSlice';
+import Notiflix from 'notiflix';
+Notiflix.Notify.init({
+  width: '280px',
+  position: 'top',
+  distance: '30px',
+  opacity: 1,
+});
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -18,7 +25,10 @@ const Contacts = () => {
           <span className={css.number}>{contact.number}</span>
           <button
             className={css.deleteBtn}
-            onClick={() => dispatch(deleteContact(contact.id))}
+            onClick={() => {
+              dispatch(deleteContact(contact.id));
+              Notiflix.Notify.info(`${contact.name} has been deleted.`);
+            }}
           >
             Delete
           </button>
