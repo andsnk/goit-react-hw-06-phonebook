@@ -1,7 +1,10 @@
 import React from 'react';
 import css from './Filter.module.css';
+import { useDispatch } from 'react-redux';
+import { filterContacts } from 'redux/filterSlice';
 
 const Filter = ({ onChange }) => {
+  const dispatch = useDispatch();
   return (
     <div className={css.container}>
       <label className={css.label} htmlFor="search">
@@ -9,7 +12,9 @@ const Filter = ({ onChange }) => {
       </label>
       <input
         className={css.input}
-        onChange={onChange}
+        onChange={e => {
+          dispatch(filterContacts(e.target.value));
+        }}
         type="text"
         name="name"
         label="Search"

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 import css from './ContactForm.module.css';
+import { addContact } from 'redux/contactsSlice';
 Notiflix.Notify.init({
   width: '280px',
   position: 'top',
@@ -10,6 +12,7 @@ Notiflix.Notify.init({
 });
 
 const ContactForm = ({ contacts, onSubmit }) => {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -39,7 +42,8 @@ const ContactForm = ({ contacts, onSubmit }) => {
       return;
     }
 
-    onSubmit({ name, number, id: nanoid(5) });
+    // onSubmit({ name, number, id: nanoid(5) });
+    dispatch(addContact({ name, number, id: nanoid(5) }));
     setName('');
     setNumber('');
     Notiflix.Notify.success(`${name} added to your contacts.`);
