@@ -27,7 +27,7 @@ const Contacts = () => {
             className={css.deleteBtn}
             onClick={() => {
               dispatch(deleteContact(contact.id));
-              Notiflix.Notify.info(`${contact.name} has been deleted.`);
+              Notiflix.Notify.info(`Contact${contact.name} has been deleted.`);
             }}
           >
             Delete
